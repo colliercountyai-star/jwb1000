@@ -1,8 +1,22 @@
 import type { Metadata } from 'next'
 import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
+import { Playfair_Display, Lato } from 'next/font/google'
 import Navigation from '@/components/Navigation'
 import './globals.css'
+
+const playfair = Playfair_Display({ 
+  subsets: ['latin'],
+  variable: '--font-playfair',
+  display: 'swap',
+})
+
+const lato = Lato({ 
+  subsets: ['latin'],
+  variable: '--font-lato',
+  weight: ['300', '400', '700'],
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: 'Margaritaville AI Chatbot',
@@ -16,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable} ${playfair.variable} ${lato.variable}`}>
       <body className={GeistSans.className}>
         {/* Background Image - extends behind navigation */}
         <div

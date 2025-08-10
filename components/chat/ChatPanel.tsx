@@ -5,7 +5,7 @@ import { useState, useRef, useEffect, useCallback } from "react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { Send, Utensils, Wine, Salad, Heart, Copy, RefreshCw, Trash2, Edit3 } from "lucide-react"
+import { Send, Utensils, Wine, Salad, Heart, Copy, RefreshCw, Trash2, Edit3, ArrowLeft } from "lucide-react"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import { useChatStore } from "@/lib/chat/store"
@@ -238,10 +238,10 @@ const CategoryButton = ({
       console.log(`Category button clicked: ${label}`)
       onClick()
     }}
-    className="bg-white/5 backdrop-blur-md hover:bg-white/10 text-white border-2 border-white/40 hover:border-white/60 rounded-full px-3 py-1.5 flex items-center space-x-1.5 transition-all duration-200 hover:scale-105 text-xs shadow-lg relative z-30 cursor-pointer"
+    className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border border-white/30 hover:border-white/50 rounded-xl px-4 py-2.5 flex items-center space-x-2 transition-all duration-300 hover:scale-105 text-sm font-medium shadow-lg hover:shadow-xl"
   >
-    <Icon className="w-2.5 h-2.5" />
-    <span className="font-medium">{label}</span>
+    <Icon className="w-4 h-4" />
+    <span>{label}</span>
   </Button>
 )
 
@@ -270,32 +270,34 @@ const LandingView = ({
   ]
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen px-4 text-center">
-      {/* Central Logo */}
-      <div className="mb-8 relative z-10">
-        <div className="flex justify-center">
-          <img
-            src="/images/jbday_logo_2025.png"
-            alt="Jimmy Buffett Day 2025"
-            className="h-48 w-auto filter drop-shadow-2xl"
-          />
-        </div>
+    <div className="flex flex-col items-center justify-center px-4 text-center">
+      {/* Jimmy Buffett Logo positioned above the Ask Jimmy box */}
+      <div className="flex justify-center mb-6">
+        <img
+          src="/images/jbday_logo_2025.png"
+          alt="Jimmy Buffett Day 2025"
+          className="h-48 w-auto filter drop-shadow-2xl hover:scale-110 hover:z-50 transition-all duration-300 cursor-pointer"
+        />
       </div>
 
       {/* Welcome Message with Ask Jimmy */}
-      <div className="relative mb-6">
-        {/* Ask Jimmy box */}
-        <div className="bg-white/5 backdrop-blur-md rounded-2xl p-6 max-w-lg border border-white/30 shadow-xl">
-          <h2 className="text-2xl font-[var(--font-playfair)] text-white mb-3">Ask Jimmy</h2>
-          <p className="text-white/90 font-[var(--font-lato)] leading-relaxed text-sm">
-            I'm here to help you discover the perfect Gulf Coast fine dining menu. Let me know what you're craving or
-            choose from our popular options below.
-          </p>
+      <div className="relative mb-8">
+        {/* Glass effect background for Ask Jimmy section */}
+        <div className="bg-white/10 backdrop-blur-sm rounded-2xl border border-white/25 p-6 shadow-lg">
+          <div className="text-center">
+            <h2 className="text-3xl font-[var(--font-playfair),'Playfair Display',serif] text-white mb-3 font-light tracking-wide">
+              Ask Jimmy
+            </h2>
+            <p className="text-white/80 font-[var(--font-lato),'Lato',sans-serif] leading-relaxed text-base max-w-md mx-auto">
+              I'm here to help you discover the perfect Gulf Coast fine dining menu. Let me know what you're craving or
+              choose from our popular options below.
+            </p>
+          </div>
         </div>
       </div>
 
-      {/* Category Buttons - arranged side by side in a single row */}
-      <div className="flex flex-wrap justify-center gap-2 mb-8 max-w-2xl relative z-20">
+      {/* Category Buttons - clean, organized layout */}
+      <div className="flex flex-wrap justify-center gap-3 mb-8 max-w-3xl relative z-20">
         {categories.map((category) => (
           <CategoryButton
             key={category.value}
@@ -309,18 +311,18 @@ const LandingView = ({
       {/* Input Area */}
       <div className="w-full max-w-lg relative z-20">
         <form onSubmit={handleSubmit} className="relative">
-          <div className="bg-white/10 backdrop-blur-md rounded-full border border-white/20 p-2 flex items-center shadow-lg">
+          <div className="bg-white/15 backdrop-blur-sm rounded-2xl border border-white/25 p-3 flex items-center shadow-lg hover:shadow-xl transition-all duration-300">
             <input
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Tell me what you're in the mood for..."
-              className="flex-1 bg-transparent text-white placeholder-white/70 px-4 py-2 focus:outline-none font-[var(--font-lato)]"
+              className="flex-1 bg-transparent text-white placeholder-white/60 px-4 py-2.5 focus:outline-none font-[var(--font-lato),'Lato',sans-serif] text-base"
             />
             <Button
               type="submit"
               disabled={!input.trim()}
-              className="bg-white/20 hover:bg-white/30 text-white rounded-full p-2 border border-white/40 hover:border-white/60 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="bg-white/25 hover:bg-white/35 text-white rounded-xl p-2.5 border border-white/30 hover:border-white/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Send className="w-5 h-5" />
             </Button>
@@ -370,20 +372,20 @@ const ChatView = ({ onBack, onReloadSystemPrompt }: { onBack: () => void; onRelo
   return (
     <div className="flex flex-col h-screen">
       {/* Header */}
-      <div className="p-4 text-center border-b border-white/30 bg-black/10 backdrop-blur-md">
-        <Button onClick={onBack} variant="ghost" className="absolute left-4 top-4 text-white hover:bg-white/10">
+      <div className="p-4 text-center border-b border-white/10 bg-white/5 backdrop-blur-sm">
+        <Button onClick={onBack} variant="ghost" className="absolute left-4 top-4 text-white/80 hover:text-white hover:bg-white/10 transition-colors">
           ← Back
         </Button>
         <Button 
           onClick={onReloadSystemPrompt} 
           variant="ghost" 
-          className="absolute right-4 top-4 text-white hover:bg-white/10"
+          className="absolute right-4 top-4 text-white/80 hover:text-white hover:bg-white/10 transition-colors"
           title="Reload System Prompt"
         >
           <RefreshCw className="w-4 h-4" />
         </Button>
-        <h1 className="text-2xl font-[var(--font-playfair)] text-white">Ask Jimmy</h1>
-        <p className="text-white/80 text-sm font-[var(--font-lato)]">Margaritaville Dining Assistant</p>
+                  <h1 className="text-2xl font-[var(--font-playfair),'Playfair Display',serif] text-white font-light">Ask Jimmy</h1>
+          <p className="text-white/60 text-sm font-[var(--font-lato),'Lato',sans-serif] mt-1">Margaritaville Dining Assistant</p>
       </div>
 
       {/* Messages */}
@@ -398,15 +400,15 @@ const ChatView = ({ onBack, onReloadSystemPrompt }: { onBack: () => void; onRelo
       </div>
 
       {/* Input Area */}
-      <div className="p-4 bg-black/5 backdrop-blur-md border-t border-white/20">
+      <div className="p-4 bg-white/5 backdrop-blur-sm border-t border-white/10">
         <div className="max-w-4xl mx-auto">
-          <div className="bg-white/10 backdrop-blur-md rounded-full border border-white/20 p-2 flex items-center shadow-lg">
+          <div className="bg-white/15 backdrop-blur-sm rounded-2xl border border-white/25 p-3 flex items-center shadow-lg hover:shadow-xl transition-all duration-300">
             <input
               type="text"
               value={chatInput}
               onChange={(e) => setChatInput(e.target.value)}
               placeholder="Ask about our menu, wine pairings, or make a reservation..."
-              className="flex-1 bg-transparent text-white placeholder-white/70 px-4 py-3 focus:outline-none font-[var(--font-lato)]"
+              className="flex-1 bg-transparent text-white placeholder-white/60 px-4 py-2.5 focus:outline-none font-[var(--font-lato),'Lato',sans-serif] text-base"
               onKeyDown={(e) => {
                 if (e.key === "Enter" && chatInput.trim()) {
                   sendMessage(chatInput.trim(), [])
@@ -421,7 +423,7 @@ const ChatView = ({ onBack, onReloadSystemPrompt }: { onBack: () => void; onRelo
                   setChatInput("")
                 }
               }}
-              className="bg-white/20 hover:bg-white/30 text-white rounded-full p-3 border border-white/40 hover:border-white/60 transition-all duration-200" 
+              className="bg-white/25 hover:bg-white/35 text-white rounded-xl p-2.5 border border-white/30 hover:border-white/50 transition-all duration-300" 
               disabled={isLoading}
             >
               {isLoading ? (
@@ -438,29 +440,58 @@ const ChatView = ({ onBack, onReloadSystemPrompt }: { onBack: () => void; onRelo
 }
 
 export default function ChatPanel() {
+  const [view, setView] = useState<"landing" | "chat">("landing")
+  const [inputValue, setInputValue] = useState("")
+  const messagesEndRef = useRef<HTMLDivElement>(null)
+  
   const { messages, sendMessage, clearMessages, reloadSystemPrompt } = useChatStore()
-  const [showChat, setShowChat] = useState(false)
 
   const handleCategorySelect = async (category: string) => {
-    console.log(`handleCategorySelect called with: ${category}`)
-    setShowChat(true)
-    await sendMessage(`I'm interested in ${category} options. What do you recommend?`, [])
+    setView("chat")
+    await sendMessage(`Tell me about ${category.toLowerCase()}`)
   }
 
   const handleSendMessage = async (message: string) => {
-    console.log(`handleSendMessage called with: ${message}`)
-    setShowChat(true)
-    await sendMessage(message, [])
+    if (!message.trim()) return
+    setInputValue("")
+    setView("chat")
+    await sendMessage(message)
   }
 
   const handleBack = () => {
+    setView("landing")
     clearMessages()
-    setShowChat(false)
   }
 
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+  }
+
+  useEffect(() => {
+    scrollToBottom()
+  }, [messages])
+
   return (
-    <div className="min-h-screen">
-      {!showChat ? (
+    <div className="flex flex-col h-screen max-w-4xl mx-auto p-4 relative">
+      {/* Background dimming overlay when chat is active */}
+      {view === "chat" && (
+        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-0" />
+      )}
+      
+      {/* Back Button */}
+      <div className="flex justify-start mb-4 relative z-10">
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={handleBack}
+          className="text-white hover:bg-white/20 transition-colors"
+        >
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          Back to Main
+        </Button>
+      </div>
+
+      {view === "landing" ? (
         <LandingView onCategorySelect={handleCategorySelect} onSendMessage={handleSendMessage} />
       ) : (
         <ChatView onBack={handleBack} onReloadSystemPrompt={reloadSystemPrompt} />
@@ -468,3 +499,5 @@ export default function ChatPanel() {
     </div>
   )
 }
+
+

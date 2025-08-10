@@ -12,8 +12,11 @@ type ChatStore = ChatState & ChatActions
 export const useChatStore = create<ChatStore>()(
   persist(
     (set, get) => {
-      console.log('DEBUG - Store initializing with JWB_GRILL_MENU:', JWB_GRILL_MENU)
-      console.log('DEBUG - Store initializing with JWB_GRILL_MENU length:', JWB_GRILL_MENU.length)
+      // Only log in browser environment
+      if (typeof window !== 'undefined') {
+        console.log('DEBUG - Store initializing with JWB_GRILL_MENU:', JWB_GRILL_MENU)
+        console.log('DEBUG - Store initializing with JWB_GRILL_MENU length:', JWB_GRILL_MENU.length)
+      }
       
       return {
         // State
@@ -26,12 +29,15 @@ export const useChatStore = create<ChatStore>()(
         sendMessage: async (content: string, files?: FileMeta[]) => {
           const { messages, systemPrompt } = get()
           
-          console.log('DEBUG - Store systemPrompt:', systemPrompt)
-          console.log('DEBUG - Store systemPrompt length:', systemPrompt.length)
+          // Only log in browser environment
+          if (typeof window !== 'undefined') {
+            console.log('DEBUG - Store systemPrompt:', systemPrompt)
+            console.log('DEBUG - Store systemPrompt length:', systemPrompt.length)
+          }
 
           // Create user message
           const userMessage: ChatMessage = {
-            id: crypto.randomUUID(),
+            id: typeof crypto !== 'undefined' ? crypto.randomUUID() : Date.now().toString() + Math.random().toString(36).substr(2, 9),
             role: "user",
             content,
             createdAt: Date.now(),
@@ -40,7 +46,7 @@ export const useChatStore = create<ChatStore>()(
 
           // Add user message and create streaming assistant message
           const assistantMessage: ChatMessage = {
-            id: crypto.randomUUID(),
+            id: typeof crypto !== 'undefined' ? crypto.randomUUID() : Date.now().toString() + Math.random().toString(36).substr(2, 9),
             role: "assistant",
             content: "",
             createdAt: Date.now(),
@@ -90,7 +96,7 @@ export const useChatStore = create<ChatStore>()(
         receiveMessage: (content: string) => {
           const { messages } = get()
           const newMessage: ChatMessage = {
-            id: crypto.randomUUID(),
+            id: typeof crypto !== 'undefined' ? crypto.randomUUID() : Date.now().toString() + Math.random().toString(36).substr(2, 9),
             role: "assistant",
             content,
             createdAt: Date.now(),
