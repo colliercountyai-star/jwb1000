@@ -400,15 +400,15 @@ const ChatView = ({ onBack, onReloadSystemPrompt }: { onBack: () => void; onRelo
       </div>
 
       {/* Input Area */}
-      <div className="p-3 sm:p-4 pb-8 sm:pb-6 bg-white/5 backdrop-blur-sm border-t border-white/10">
+      <div className="p-3 sm:p-4 pb-8 sm:pb-6 bg-black/30 backdrop-blur-sm border-t border-white/20">
         <div className="max-w-4xl mx-auto">
-          <div className="bg-white/25 backdrop-blur-sm rounded-2xl border border-white/40 p-2 sm:p-3 flex items-center shadow-lg hover:shadow-xl transition-all duration-300 gap-2 min-h-[44px]">
+          <div className="bg-black/60 backdrop-blur-sm rounded-2xl border border-white/50 p-2 sm:p-3 flex items-center shadow-lg hover:shadow-xl transition-all duration-300 gap-2 min-h-[44px]">
             <input
               type="text"
               value={chatInput}
               onChange={(e) => setChatInput(e.target.value)}
               placeholder="Ask about our menu, wine pairings, or make a reservation..."
-              className="flex-1 bg-transparent text-white placeholder-white/70 px-3 sm:px-4 py-2.5 sm:py-3 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-transparent font-[var(--font-lato),'Lato',sans-serif] text-sm sm:text-base min-w-0 w-full h-full drop-shadow-sm"
+              className="flex-1 bg-transparent text-white placeholder-white/80 px-3 sm:px-4 py-2.5 sm:py-3 focus:outline-none focus:ring-2 focus:ring-white/70 focus:ring-offset-2 focus:ring-offset-transparent font-[var(--font-lato),'Lato',sans-serif] text-sm sm:text-base min-w-0 w-full h-full drop-shadow-lg"
               onKeyDown={(e) => {
                 if (e.key === "Enter" && chatInput.trim()) {
                   sendMessage(chatInput.trim(), [])
@@ -426,7 +426,7 @@ const ChatView = ({ onBack, onReloadSystemPrompt }: { onBack: () => void; onRelo
                   setChatInput("")
                 }
               }}
-              className="bg-white/25 hover:bg-white/35 text-white rounded-xl p-2 sm:p-2.5 border border-white/30 hover:border-white/50 transition-all duration-300 flex-shrink-0" 
+              className="bg-white/40 hover:bg-white/50 text-white rounded-xl p-2 sm:p-2.5 border border-white/60 hover:border-white/80 transition-all duration-300 flex-shrink-0" 
               disabled={isLoading}
             >
               {isLoading ? (
