@@ -1,0 +1,58 @@
+{
+  "faqs": [
+    {
+      "id": "corkage-policy",
+      "question": "What is your corkage policy?",
+      "answer": "Corkage is $25 for bottles not on our list with a two bottle maximum per party.",
+      "category": "policies",
+      "tags": ["corkage", "wine", "bottles", "policy"]
+    },
+    {
+      "id": "cancellation-policy",
+      "question": "What is your cancellation policy?",
+      "answer": "You have 24 hours to cancel reservations. If cancelled within 24 hours, there is a $25 fee per head.",
+      "category": "policies",
+      "tags": ["cancellation", "reservations", "fees", "policy"]
+    },
+    {
+      "id": "window-requests",
+      "question": "Can I request a window table?",
+      "answer": "Window requests are taken however NEVER guaranteed as we do get many requests.",
+      "category": "seating",
+      "tags": ["window", "table", "requests", "seating"]
+    },
+    {
+      "id": "table-availability",
+      "question": "Do you have large tables for groups?",
+      "answer": "We have one round table in house that can seat up to 6 guests.",
+      "category": "seating",
+      "tags": ["large table", "groups", "round table", "6 guests"]
+    },
+    {
+      "id": "dress-code",
+      "question": "What is your dress code?",
+      "answer": "Dress code is no swimwear and no tank tops for men.",
+      "category": "policies",
+      "tags": ["dress code", "swimwear", "tank tops", "attire"]
+    },
+    {
+      "id": "walk-in-policy",
+      "question": "Do you accept walk-ins?",
+      "answer": "We do take walk-ins however we always recommend a reservation for the main dining room. Bar and Lounge are always open seating.",
+      "category": "policies",
+      "tags": ["walk-ins", "reservations", "bar", "lounge", "open seating"]
+    }
+  ],
+  "categories": [
+    {
+      "id": "policies",
+      "name": "Restaurant Policies",
+      "description": "General policies and rules for dining at JWB Grill"
+    },
+    {
+      "id": "seating",
+      "name": "Seating & Tables",
+      "description": "Information about table availability and seating arrangements"
+    }
+  ]
+}
