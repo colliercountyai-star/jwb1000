@@ -370,27 +370,27 @@ const ChatView = ({ onBack, onReloadSystemPrompt }: { onBack: () => void; onRelo
   )
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-full min-h-screen">
       {/* Header */}
-      <div className="p-4 text-center border-b border-white/10 bg-white/5 backdrop-blur-sm">
-        <Button onClick={onBack} variant="ghost" className="absolute left-4 top-4 text-white/80 hover:text-white hover:bg-white/10 transition-colors">
+      <div className="p-3 sm:p-4 text-center border-b border-white/10 bg-white/5 backdrop-blur-sm">
+        <Button onClick={onBack} variant="ghost" className="absolute left-3 sm:left-4 top-3 sm:top-4 text-white/80 hover:text-white hover:bg-white/10 transition-colors">
           ← Back
         </Button>
         <Button 
           onClick={onReloadSystemPrompt} 
           variant="ghost" 
-          className="absolute right-4 top-4 text-white/80 hover:text-white hover:bg-white/10 transition-colors"
+          className="absolute right-3 sm:right-4 top-3 sm:top-4 text-white/80 hover:text-white hover:bg-white/10 transition-colors"
           title="Reload System Prompt"
         >
           <RefreshCw className="w-4 h-4" />
         </Button>
-                  <h1 className="text-2xl font-[var(--font-playfair),'Playfair Display',serif] text-white font-light">Ask Jimmy</h1>
-          <p className="text-white/60 text-sm font-[var(--font-lato),'Lato',sans-serif] mt-1">Margaritaville Dining Assistant</p>
+        <h1 className="text-xl sm:text-2xl font-[var(--font-playfair),'Playfair Display',serif] text-white font-light">Ask Jimmy</h1>
+        <p className="text-white/60 text-xs sm:text-sm font-[var(--font-lato),'Lato',sans-serif] mt-1">Margaritaville Dining Assistant</p>
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-hidden">
-        <ScrollArea ref={scrollAreaRef} className="h-full px-4">
+      <div className="flex-1 overflow-hidden pb-2">
+        <ScrollArea ref={scrollAreaRef} className="h-full px-3 sm:px-4">
           <div className="py-4">
             {messages.map((message) => (
               <MessageBubble key={message.id} message={message} onAction={handleMessageAction} />
@@ -400,21 +400,24 @@ const ChatView = ({ onBack, onReloadSystemPrompt }: { onBack: () => void; onRelo
       </div>
 
       {/* Input Area */}
-      <div className="p-4 bg-white/5 backdrop-blur-sm border-t border-white/10">
+      <div className="p-3 sm:p-4 pb-8 sm:pb-6 bg-white/5 backdrop-blur-sm border-t border-white/10">
         <div className="max-w-4xl mx-auto">
-          <div className="bg-white/15 backdrop-blur-sm rounded-2xl border border-white/25 p-3 flex items-center shadow-lg hover:shadow-xl transition-all duration-300">
+          <div className="bg-white/15 backdrop-blur-sm rounded-2xl border border-white/25 p-2 sm:p-3 flex items-center shadow-lg hover:shadow-xl transition-all duration-300 gap-2 min-h-[44px]">
             <input
               type="text"
               value={chatInput}
               onChange={(e) => setChatInput(e.target.value)}
               placeholder="Ask about our menu, wine pairings, or make a reservation..."
-              className="flex-1 bg-transparent text-white placeholder-white/60 px-4 py-2.5 focus:outline-none font-[var(--font-lato),'Lato',sans-serif] text-base"
+              className="flex-1 bg-transparent text-white placeholder-white/60 px-3 sm:px-4 py-2.5 sm:py-3 focus:outline-none font-[var(--font-lato),'Lato',sans-serif] text-sm sm:text-base min-w-0 w-full h-full"
               onKeyDown={(e) => {
                 if (e.key === "Enter" && chatInput.trim()) {
                   sendMessage(chatInput.trim(), [])
                   setChatInput("")
                 }
               }}
+              autoComplete="off"
+              autoCorrect="off"
+              spellCheck="false"
             />
             <Button 
               onClick={() => {
@@ -423,13 +426,13 @@ const ChatView = ({ onBack, onReloadSystemPrompt }: { onBack: () => void; onRelo
                   setChatInput("")
                 }
               }}
-              className="bg-white/25 hover:bg-white/35 text-white rounded-xl p-2.5 border border-white/30 hover:border-white/50 transition-all duration-300" 
+              className="bg-white/25 hover:bg-white/35 text-white rounded-xl p-2 sm:p-2.5 border border-white/30 hover:border-white/50 transition-all duration-300 flex-shrink-0" 
               disabled={isLoading}
             >
               {isLoading ? (
-                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
               ) : (
-                <Send className="w-5 h-5" />
+                <Send className="w-4 h-4 sm:w-5 sm:h-5" />
               )}
             </Button>
           </div>
